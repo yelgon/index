@@ -20,6 +20,17 @@ const PostType = new GraphQLObjectType({
   })
 });
 
+const CommentType = new GraphQLObjectType({
+  name: "Comment",
+  fields: () => ({
+    postId: { type: GraphQLInt },
+    id: { type: GraphQLInt },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    body: { type: GraphQLString }
+  })
+});
+
 //root query
 
 const RootQuery = new GraphQLObjectType({
@@ -45,9 +56,39 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         if (args.userId) {
-          return axios.get(jhp + 'posts?userId='+args.userId).then(res => res.data);
+          return axios
+            .get(jhp + "posts?userId=" + args.userId)
+            .then(res => res.data);
         } else {
-          return axios.get(jhp + 'posts').then(res => res.data);
+          return axios.get(jhp + "posts").then(res => res.data);
+        }
+      }
+    },
+    comment: {
+      type: CommentType,
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        return axios.get(jhp + "comments/" + args.id).then(res => res.data);
+      }
+    },
+    comments: {
+      type: new GraphQLList(CommentType),
+      args: {
+        postId: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        if (args.postId) {
+          return axios
+            .get(jhp + "comments?postId=" + args.postId)
+            .then(res => res.data);
+        } else {
+          return axios.get(jhp + "comments").then(res => res.data);
         }
       }
     }
