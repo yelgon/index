@@ -4,7 +4,7 @@
   "description": "A simple GraphQL endpoint wrapping the *AWESOME* https://jsonplaceholder.typicode.com/",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"    
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Martin-Stankard/json-placeholder-graphql#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
