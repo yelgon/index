@@ -1,16 +1,18 @@
-const axios = require('axios');
+const axios = require("axios");
 const {
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLInt,
-    GraphQLSchema,
-    GraphQLList,
-    GraphQLNonNull
-} = require('graphql');
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLSchema,
+  GraphQLList,
+  GraphQLNonNull
+} = require("graphql");
+
+const jhp = "https://jsonplaceholder.typicode.com/";
 
 const PostType = new GraphQLObjectType({
-  name: 'Post',
-  fields:() => ({
+  name: "Post",
+  fields: () => ({
     userId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     title: { type: GraphQLString },
@@ -28,23 +30,25 @@ const RootQuery = new GraphQLObjectType({
       args: {
         id: {
           type: GraphQLInt
-        },
+        }
+      },
+      resolve(parentValue, args) {
+        return axios.get(jhp + "posts/" + args.id).then(res => res.data);
+      }
+    },
+    posts: {
+      type: new GraphQLList(PostType),
+      args: {
         userId: {
           type: GraphQLInt
         }
       },
       resolve(parentValue, args) {
-        return axios
-          .get("https://jsonplaceholder.typicode.com/posts/" + args.id)
-          .then(res => res.data);
-      }
-    },
-    posts: {
-      type: new GraphQLList(PostType),
-      resolve(parentValue, args) {
-        return axios
-          .get("https://jsonplaceholder.typicode.com/posts/")
-          .then(res => res.data);
+        if (args.userId) {
+          return axios.get(jhp + 'posts?userId='+args.userId).then(res => res.data);
+        } else {
+          return axios.get(jhp + 'posts').then(res => res.data);
+        }
       }
     }
   }
