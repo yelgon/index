@@ -1,16 +1,16 @@
-const axios = require("axios");
-
+const axios = require('axios');
 const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLSchema,
-  GraphQLList
-} = require("graphql");
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLInt,
+    GraphQLSchema,
+    GraphQLList,
+    GraphQLNonNull
+} = require('graphql');
 
 const PostType = new GraphQLObjectType({
-  name: "Post",
-  fields: () => ({
+  name: 'Post',
+  fields:() => ({
     userId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     title: { type: GraphQLString },
@@ -20,13 +20,16 @@ const PostType = new GraphQLObjectType({
 
 //root query
 
-const RootQuery = GraphQLObjectType({
+const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     post: {
       type: PostType,
       args: {
         id: {
+          type: GraphQLInt
+        },
+        userId: {
           type: GraphQLInt
         }
       },

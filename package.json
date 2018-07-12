@@ -4,7 +4,8 @@
   "description": "A simple GraphQL endpoint wrapping the *AWESOME* https://jsonplaceholder.typicode.com/",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
