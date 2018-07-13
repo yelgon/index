@@ -9,8 +9,7 @@ This codebase and <a href="https://json-placeholder-graphql.herokuapp.com/graphq
 All Graphql queries are entered into the GraphiQL ui:
 
 * Posts https://jsonplaceholder.typicode.com/posts/1
-*<code>
-`{
+* `{
   post(id:1){
     userId
     id
@@ -18,11 +17,9 @@ All Graphql queries are entered into the GraphiQL ui:
     body
   }
 }`
-</code>
 
 * Comments https://jsonplaceholder.typicode.com/comments/1
-* <code>
-  `{
+* `{
   comment(id: 1) {
     postId
     id
@@ -31,22 +28,19 @@ All Graphql queries are entered into the GraphiQL ui:
     body
   }
 }`
-</code>
+
 
 * Albums https://jsonplaceholder.typicode.com/albums/1
-* <code>
-`{
+* `{
   album(id: 1) {
     userId
     id
     title
   }
 }`
-</code>
 
 * Photos https://jsonplaceholder.typicode.com/photos/1
-* <code>
-`{
+* `{
   photo(id: 1) {
     albumId
     id
@@ -55,11 +49,9 @@ All Graphql queries are entered into the GraphiQL ui:
     thumbnailUrl
   }
 }`
-</code>
 
 * Todos https://jsonplaceholder.typicode.com/todos/1
-* <code>
-`{
+* `{
   todo(id: 1) {
     userId
     id
@@ -67,11 +59,9 @@ All Graphql queries are entered into the GraphiQL ui:
     completed
   }
 }`
-</code>
 
 * Users https://jsonplaceholder.typicode.com/users/1
-* <code>
-  `{
+* `{
   user(id: 1) {
     id
     username
@@ -80,4 +70,3 @@ All Graphql queries are entered into the GraphiQL ui:
     website
   }
 }`
-</code>
