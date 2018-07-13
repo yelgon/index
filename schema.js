@@ -5,7 +5,7 @@ const {
   GraphQLInt,
   GraphQLSchema,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLBoolean
 } = require("graphql");
 
 const jhp = "https://jsonplaceholder.typicode.com/";
@@ -34,11 +34,34 @@ const CommentType = new GraphQLObjectType({
 const AlbumType = new GraphQLObjectType({
   name: "Album",
   fields: () => ({
-    userId: {type: GraphQLInt },
-    id: {type: GraphQLInt },
+    userId: { type: GraphQLInt },
+    id: { type: GraphQLInt },
     title: { type: GraphQLString }
   })
 });
+
+const PhotoType = new GraphQLObjectType({
+  name: "Photo",
+  fields: () => ({
+    albumId: { type: GraphQLInt },
+    id: { type: GraphQLInt },
+    title: { type: GraphQLString },
+    url: { type: GraphQLString },
+    thumbnailUrl: { type: GraphQLString }
+  })
+});
+
+const TodoType = new GraphQLObjectType({
+  name: "Todo",
+  fields: () => ({
+    userId: { type: GraphQLInt },
+    id: { type: GraphQLInt },
+    title: { type: GraphQLString },
+    completed: { type: GraphQLBoolean }
+  })
+});
+
+
 //root query
 
 const RootQuery = new GraphQLObjectType({
@@ -126,6 +149,75 @@ const RootQuery = new GraphQLObjectType({
         } else {
           return axios.get(jhp + "albums").then(res => res.data);
         }
+      }
+    },
+    photo: {
+      type: PhotoType,
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        return axios.get(jhp + "photos/" + args.id).then(res => res.data);
+      }
+    },
+    photos: {
+      type: new GraphQLList(PhotoType),
+      args: {
+        albumId: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        if (args.albumId) {
+          return axios
+            .get(jhp + "photos?albumId=" + args.albumId)
+            .then(res => res.data);
+        } else {
+          return axios.get(jhp + "photos").then(res => res.data);
+        }
+      }
+    },
+    todo: {
+      type: TodoType,
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        return axios.get(jhp + "todos/" + args.id).then(res => res.data);
+      }
+    },
+    todos: {
+      type: new GraphQLList(TodoType),
+      args: {
+        userId: {
+          type: GraphQLInt
+        },
+        completed: {
+          type: GraphQLBoolean
+        }
+      },
+      resolve(parentValue, args) {
+        let argsString = '';
+        let idSet = (typeof args.userId !=='undefined');
+        let compSet = (typeof args.completed !== 'undefined');
+        //todos?userId=3&completed=true
+        if (idSet&&!compSet) {         
+          argsString='?userId='+args.userId;         
+        }
+
+        if (!idSet&&compSet) {         
+          argsString='?completed='+args.completed;         
+        }
+
+        if (idSet&&compSet) {         
+          argsString='?userId='+args.userId+'&completed='+args.completed;         
+        }
+        //ready to feel stupid when I think of a smarter way...
+        return axios.get(jhp + "todos"+ argsString).then(res => res.data);
       }
     }
   }
