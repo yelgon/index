@@ -89,27 +89,16 @@ All Graphql queries are entered into the GraphiQL ui:
 * https://jsonplaceholder.typicode.com/posts/1/comments
 ```
 {
-  comment(id: 1) {
+  comments(postId: 1) {
     postId
     id
     name
     email
     body
-    post {
-      userId
-      title
-      body
-      user {
-        name
-        username
-        email
-        phone
-        website
-      }
-    }
   }
 }
 ```
+
 * https://jsonplaceholder.typicode.com/albums/1/photos
 ```
 
