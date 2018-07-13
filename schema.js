@@ -61,6 +61,17 @@ const TodoType = new GraphQLObjectType({
   })
 });
 
+const UserType = new GraphQLObjectType({
+  name: "User",
+  fields: () => ({
+    id: { type: GraphQLInt },
+    name: { type: GraphQLString },
+    username: { type: GraphQLString },
+    email: { type: GraphQLString },
+    phone: { type: GraphQLString },
+    website: { type: GraphQLString }
+  })
+});
 
 //root query
 
@@ -201,23 +212,41 @@ const RootQuery = new GraphQLObjectType({
         }
       },
       resolve(parentValue, args) {
-        let argsString = '';
-        let idSet = (typeof args.userId !=='undefined');
-        let compSet = (typeof args.completed !== 'undefined');
+        let argsString = "";
+        let idSet = typeof args.userId !== "undefined";
+        let compSet = typeof args.completed !== "undefined";
         //todos?userId=3&completed=true
-        if (idSet&&!compSet) {         
-          argsString='?userId='+args.userId;         
+        if (idSet && !compSet) {
+          argsString = "?userId=" + args.userId;
         }
 
-        if (!idSet&&compSet) {         
-          argsString='?completed='+args.completed;         
+        if (!idSet && compSet) {
+          argsString = "?completed=" + args.completed;
         }
 
-        if (idSet&&compSet) {         
-          argsString='?userId='+args.userId+'&completed='+args.completed;         
+        if (idSet && compSet) {
+          argsString =
+            "?userId=" + args.userId + "&completed=" + args.completed;
         }
         //ready to feel stupid when I think of a smarter way...
-        return axios.get(jhp + "todos"+ argsString).then(res => res.data);
+        return axios.get(jhp + "todos" + argsString).then(res => res.data);
+      }
+    },
+    user: {
+      type: UserType,
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        return axios.get(jhp + "users/" + args.id).then(res => res.data);
+      }
+    },
+    users: {
+      type: new GraphQLList(UserType),
+      resolve(parentValue, args) {
+        return axios.get(jhp + "users").then(res => res.data);
       }
     }
   }
