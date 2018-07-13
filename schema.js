@@ -31,6 +31,14 @@ const CommentType = new GraphQLObjectType({
   })
 });
 
+const AlbumType = new GraphQLObjectType({
+  name: "Album",
+  fields: () => ({
+    userId: {type: GraphQLInt },
+    id: {type: GraphQLInt },
+    title: { type: GraphQLString }
+  })
+});
 //root query
 
 const RootQuery = new GraphQLObjectType({
@@ -89,6 +97,34 @@ const RootQuery = new GraphQLObjectType({
             .then(res => res.data);
         } else {
           return axios.get(jhp + "comments").then(res => res.data);
+        }
+      }
+    },
+    album: {
+      type: AlbumType,
+      args: {
+        id: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        return axios.get(jhp + "albums/" + args.id).then(res => res.data);
+      }
+    },
+    albums: {
+      type: new GraphQLList(AlbumType),
+      args: {
+        userId: {
+          type: GraphQLInt
+        }
+      },
+      resolve(parentValue, args) {
+        if (args.userId) {
+          return axios
+            .get(jhp + "albums?userId=" + args.userId)
+            .then(res => res.data);
+        } else {
+          return axios.get(jhp + "albums").then(res => res.data);
         }
       }
     }
