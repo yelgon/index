@@ -13,6 +13,7 @@ const jhp = "https://jsonplaceholder.typicode.com/";
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: () => ({
+    user: userGetter,
     userId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     title: { type: GraphQLString },
@@ -23,6 +24,7 @@ const PostType = new GraphQLObjectType({
 const CommentType = new GraphQLObjectType({
   name: "Comment",
   fields: () => ({
+    post: postGetter,
     postId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
@@ -34,6 +36,7 @@ const CommentType = new GraphQLObjectType({
 const AlbumType = new GraphQLObjectType({
   name: "Album",
   fields: () => ({
+    user: userGetter,
     userId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     title: { type: GraphQLString }
@@ -43,6 +46,7 @@ const AlbumType = new GraphQLObjectType({
 const PhotoType = new GraphQLObjectType({
   name: "Photo",
   fields: () => ({
+    album: albumGetter,
     albumId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     title: { type: GraphQLString },
@@ -54,6 +58,7 @@ const PhotoType = new GraphQLObjectType({
 const TodoType = new GraphQLObjectType({
   name: "Todo",
   fields: () => ({
+    user: userGetter,
     userId: { type: GraphQLInt },
     id: { type: GraphQLInt },
     title: { type: GraphQLString },
@@ -251,6 +256,27 @@ const RootQuery = new GraphQLObjectType({
     }
   }
 });
+
+const userGetter = {
+  type: UserType,
+  resolve(parent, args) {
+    return axios.get(jhp + "users/" + parent.userId).then(res => res.data);
+  }
+};
+
+const postGetter = {
+  type: PostType,
+  resolve(parent, args) {
+    return axios.get(jhp + "posts/" + parent.postId).then(res => res.data);
+  }
+};
+
+const albumGetter = {
+  type: AlbumType,
+  resolve(parent, args) {
+    return axios.get(jhp + "albums/" + parent.albumId).then(res => res.data);
+  }
+};
 
 module.exports = new GraphQLSchema({
   query: RootQuery
