@@ -9,24 +9,22 @@ This codebase and <a href="https://json-placeholder-graphql.herokuapp.com/graphq
 All Graphql queries are entered into the GraphiQL ui:
 
 * Posts https://jsonplaceholder.typicode.com/posts/1
-
-<code>
-{</br>
-  post(id:1){</br>
-    userId</br>
-    id</br>
-    title</br>
-    body</br>
-  }</br>
-}</br>
-</code></br>
+*<code>
+{
+  post(id:1){
+    userId
+    id
+    title
+    body
+  }
+}
+</code>
 
 * Comments https://jsonplaceholder.typicode.com/comments/1
-
-<code>
-{</br>
-  comment(id:1){</br>
-    postId</br>
+* <code>
+{
+  comment(id:1){
+    postId
     id
     name
     email
@@ -36,8 +34,7 @@ All Graphql queries are entered into the GraphiQL ui:
 </code>
 
 * Albums https://jsonplaceholder.typicode.com/albums/1
-
-<code>
+* <code>
 {
   album(id: 1) {
     userId
@@ -48,8 +45,7 @@ All Graphql queries are entered into the GraphiQL ui:
 </code>
 
 * Photos https://jsonplaceholder.typicode.com/photos/1
-
-<code>
+* <code>
 {
   photo(id: 1) {
     albumId
@@ -62,8 +58,7 @@ All Graphql queries are entered into the GraphiQL ui:
 </code>
 
 * Todos https://jsonplaceholder.typicode.com/todos/1
-
-<code>
+* <code>
   {
   todo(id: 1) {
     userId
@@ -75,7 +70,7 @@ All Graphql queries are entered into the GraphiQL ui:
 </code>
 
 * Users https://jsonplaceholder.typicode.com/users/1
-<code>
+* <code>
   {
   user(id: 1) {
     id
