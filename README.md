@@ -1,11 +1,14 @@
 # A JSON Placeholder GraphQL API
+
 A simple GraphQL endpoint wrapping the *AWESOME*
 <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>, a fake online REST API for testing and prototyping
 </br></br>
 ## json-placeholder-graphql
+
 This codebase and <a href="https://json-placeholder-graphql.herokuapp.com/graphql">free tier Heroku deplyment</a> offers the GraphiQL ui as a simple sandbox to try all of the specific GET queries offered by <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>.
 </br></br>
 ## Example Queries, (Only GET has been implemented)
+
 All Graphql queries are entered into the GraphiQL ui:
 
 * Posts https://jsonplaceholder.typicode.com/posts/1
@@ -79,4 +82,50 @@ All Graphql queries are entered into the GraphiQL ui:
     website
   }
 }
+```
+
+## Here's the list of available nested routes:
+
+* https://jsonplaceholder.typicode.com/posts/1/comments
+```
+{
+  comment(id: 1) {
+    postId
+    id
+    name
+    email
+    body
+    post {
+      userId
+      title
+      body
+      user {
+        name
+        username
+        email
+        phone
+        website
+      }
+    }
+  }
+}
+```
+* https://jsonplaceholder.typicode.com/albums/1/photos
+```
+
+```
+
+* https://jsonplaceholder.typicode.com/users/1/albums
+```
+
+```
+
+* https://jsonplaceholder.typicode.com/users/1/todos
+```
+
+```
+
+* https://jsonplaceholder.typicode.com/users/1/posts
+```
+
 ```
