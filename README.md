@@ -86,7 +86,8 @@ All Graphql queries are entered into the GraphiQL ui:
 
 ## Here's the list of available nested routes:
 
-* https://jsonplaceholder.typicode.com/posts/1/comments
+* https://jsonplaceholder.typicode.com/posts/1/comments 
+* (also experiment tunneling down into post and user, revealing the possibilities via a GraphQL Api...)
 ```
 {
   comments(postId: 1) {
