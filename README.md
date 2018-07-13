@@ -11,22 +11,22 @@ All Graphql queries are entered into the GraphiQL ui:
 * Posts https://jsonplaceholder.typicode.com/posts/1
 
 <code>
-{
-  post(id:1){
-    userId
-    id
-    title
-    body
-  }
-}
-</code>
+{</br>
+  post(id:1){</br>
+    userId</br>
+    id</br>
+    title</br>
+    body</br>
+  }</br>
+}</br>
+</code></br>
 
 * Comments https://jsonplaceholder.typicode.com/comments/1
 
 <code>
-{
-  comment(id:1){
-    postId
+{</br>
+  comment(id:1){</br>
+    postId</br>
     id
     name
     email
