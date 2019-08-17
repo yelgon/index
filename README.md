@@ -5,8 +5,14 @@ A simple GraphQL endpoint wrapping the *AWESOME*
 </br></br>
 ## json-placeholder-graphql
 
-This codebase and <a href="https://json-placeholder-graphql.herokuapp.com/graphql">free tier Heroku deplyment</a> offers the GraphiQL ui as a simple sandbox to try all of the specific GET queries offered by <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>. The "Good Stuff" is in the Schema.js file. 
-</br></br>
+This codebase and <a href="https://json-placeholder-graphql.herokuapp.com/graphql">free tier Heroku deplyment</a> offers the GraphiQL ui as a simple sandbox to try all of the specific GET queries offered by <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder</a>. 
+
+The "Good Stuff" is in the `Schema.js` file. 
+
+To execute locally, run from the root of this repo with `yarn dev` .  It runs on port 4000 and you can query it with Insomnia, with the GraphQL Insomnia plugin, like so:
+
+![Screenshot](Insomnia.png)
+
 ## Example Queries, (Only GET has been implemented)
 
 All Graphql queries are entered into the GraphiQL ui:
