@@ -9,7 +9,7 @@ This codebase and <a href="https://json-placeholder-graphql.herokuapp.com/graphq
 
 The "Good Stuff" is in the `Schema.js` file. 
 
-To execute locally, run from the root of this repo with `yarn dev` .  It runs on port 4000 and you can query it with Insomnia, with the GraphQL Insomnia plugin, like so:
+To execute locally, run from the root of this repo with `yarn dev` .  It runs on port 4000 and you can query it with [Insomnia](https://insomnia.rest/download/), with the GraphQL Insomnia plugin, like so:
 
 ![Screenshot](Insomnia.png)
 
