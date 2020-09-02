@@ -1,6 +1,7 @@
 import React from "react";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
+import Launches from "./components/Launches.js";
 import "./App.css";
 import logo from "./logo.png";
 
@@ -14,8 +15,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className="container">
         <img src={logo} alt="indexLogo" style={{ display: "block" }} />
-        <h1>hi</h1>
-        <h2>test</h2>
+        <Launches />
       </div>
     </ApolloProvider>
   );
