@@ -2,10 +2,9 @@
   "name": "json-placeholder-graphql",
   "version": "1.0.0",
   "description": "A simple GraphQL endpoint wrapping the *AWESOME* https://jsonplaceholder.typicode.com/",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
