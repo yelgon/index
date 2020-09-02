@@ -11,9 +11,6 @@ app.use(
     graphiql: true,
   })
 );
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
 
 console.log("hello");
 const port = process.env.PORT || 4000;
