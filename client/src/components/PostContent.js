@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import { LoremIpsum } from "react-lorem-ipsum";
 import styled from "styled-components";
+import Comment from "./Comment";
+
 const TextWrapper = styled.div`
   margin: 30px;
   p {
@@ -16,10 +18,11 @@ const TextWrapper = styled.div`
 
 export default function PostContent() {
   const { postId } = useParams();
+  const intPostId = parseInt(postId);
 
   const POST_QUERY = gql`
     {
-      post(id: ${parseInt(postId)}) {
+      post(id: ${intPostId}) {
         userId
           user{
             username
@@ -35,7 +38,6 @@ export default function PostContent() {
   `;
 
   const { loading, error, data } = useQuery(POST_QUERY);
-  console.log(data);
 
   if (loading) return <h4>Loading...</h4>;
   if (error) {
@@ -58,9 +60,12 @@ export default function PostContent() {
       </Link>
       <h4 style={{ marginBottom: "50px" }}>{data.post.title}</h4>
       <p>{data.post.body}</p>
-
       <LoremIpsum p={3} />
-      <h5>{data.post.user.username}</h5>
+      <h5>- {data.post.user.username} -</h5>
+      <h6 style={{ borderBottom: "2px solid green", paddingBottom: "5px" }}>
+        Comments
+      </h6>
+      <Comment postId={intPostId} />
     </TextWrapper>
   );
 }

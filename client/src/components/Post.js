@@ -15,7 +15,7 @@ export default function Post({ posts: { userId, user, id, title, body } }) {
     <div className="card card-body mb-3">
       <div className="row">
         <div className="col-md-9">
-          <h5 style={{ fontStyle: "italic" }}>{title}</h5>
+          <h5 style={{ fontStyle: "italic", marginBottom: "25px" }}>{title}</h5>
           {body.length > MAX_LENGTH ? (
             <Content>{`${body.substring(0, MAX_LENGTH)} ....`}</Content>
           ) : (
