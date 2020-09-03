@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import BlogDetail from "./BlogDetail";
+import Post from "./Post";
 
 const LAUNCHES_QUERY = gql`
   {
@@ -26,9 +26,9 @@ export default function Blog() {
 
   return (
     <div>
-      <h1 className="display-5 my-4">Blogging</h1>
+      <h1 className="display-5 my-4">Yangoh's Blog</h1>
       {data.posts.map((e) => (
-        <BlogDetail key={e.id} posts={e} />
+        <Post key={e.id} posts={e} />
       ))}
     </div>
   );
