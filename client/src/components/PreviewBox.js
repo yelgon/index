@@ -8,7 +8,9 @@ const Content = styled.p`
   margin: 10px 0 10px 0;
 `;
 
-export default function Post({ posts: { userId, user, id, title, body } }) {
+export default function PreviewBox({
+  posts: { userId, user, id, title, body },
+}) {
   const MAX_LENGTH = 90;
 
   return (

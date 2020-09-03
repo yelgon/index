@@ -2,6 +2,7 @@ const express = require("express");
 const expressGraphQL = require("express-graphql");
 const schema = require("./schema.js");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 
@@ -16,6 +17,11 @@ app.use(
     graphiql: true,
   })
 );
+
+app.use(express.static("public"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
 
 const port = process.env.PORT || 4000;
 

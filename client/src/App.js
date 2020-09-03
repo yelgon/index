@@ -4,12 +4,11 @@ import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Blog from "./components/Blog.js";
 import PostContent from "./components/PostContent";
-
 import "./App.css";
 import logo from "./logo.png";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "/graphql",
   cache: new InMemoryCache(),
 });
 

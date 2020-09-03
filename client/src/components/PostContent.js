@@ -4,6 +4,16 @@ import { useQuery, gql } from "@apollo/client";
 import { LoremIpsum } from "react-lorem-ipsum";
 import styled from "styled-components";
 import Comment from "./Comment";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  TwitterShareButton,
+  RedditShareButton,
+  RedditIcon,
+  LinkedinIcon,
+  LinkedinShareButton,
+} from "react-share";
 
 const TextWrapper = styled.div`
   margin: 30px;
@@ -12,7 +22,6 @@ const TextWrapper = styled.div`
   }
   h5 {
     text-align: right;
-    margin: 50px 50px;
   }
 `;
 
@@ -44,6 +53,9 @@ export default function PostContent() {
     console.log(error);
     return <h4>Error :</h4>;
   }
+  console.log(window.location.href);
+  console.log(typeof window.location.href);
+  const windowURL = window.location.href;
 
   return (
     <TextWrapper>
@@ -62,9 +74,31 @@ export default function PostContent() {
       <p>{data.post.body}</p>
       <LoremIpsum p={3} />
       <h5>- {data.post.user.username} -</h5>
-      <h6 style={{ borderBottom: "2px solid green", paddingBottom: "5px" }}>
+      <div class="badge badge-light">Click the icon to share this post</div>
+      <div>
+        <FacebookShareButton url="http://localhost:3000/post/2">
+          <FacebookIcon />
+        </FacebookShareButton>
+        <LinkedinShareButton url="https://github.com/yelgon">
+          <LinkedinIcon />
+        </LinkedinShareButton>
+        <TwitterShareButton url="https://github.com/yelgon">
+          <TwitterIcon />
+        </TwitterShareButton>
+        <RedditShareButton url="https://github.com/yelgon">
+          <RedditIcon />
+        </RedditShareButton>
+      </div>
+      <h4
+        style={{
+          borderBottom: "2px solid green",
+          paddingBottom: "5px",
+          marginTop: "30px",
+        }}
+      >
         Comments
-      </h6>
+      </h4>
+
       <Comment postId={intPostId} />
     </TextWrapper>
   );

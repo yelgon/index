@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, gql } from "@apollo/client";
-import Post from "./Post";
+import PreviewBox from "./PreviewBox";
 
 const LAUNCHES_QUERY = gql`
   {
@@ -28,7 +28,7 @@ export default function Blog() {
     <div>
       <h1 className="display-5 my-4">Yangoh's Blog</h1>
       {data.posts.map((e) => (
-        <Post key={e.id} posts={e} />
+        <PreviewBox key={e.id} posts={e} />
       ))}
     </div>
   );
