@@ -55,7 +55,6 @@ export default function PostContent() {
   }
   console.log(window.location.href);
   console.log(typeof window.location.href);
-  const windowURL = window.location.href;
 
   return (
     <TextWrapper>
@@ -76,16 +75,16 @@ export default function PostContent() {
       <h5>- {data.post.user.username} -</h5>
       <div class="badge badge-light">Click the icon to share this post</div>
       <div>
-        <FacebookShareButton url={windowURL}>
+        <FacebookShareButton url={window.location.href} round={true}>
           <FacebookIcon />
         </FacebookShareButton>
-        <LinkedinShareButton url={windowURL}>
+        <LinkedinShareButton url={window.location.href} round={true}>
           <LinkedinIcon />
         </LinkedinShareButton>
-        <TwitterShareButton url={windowURL}>
+        <TwitterShareButton url={window.location.href} round={true}>
           <TwitterIcon />
         </TwitterShareButton>
-        <RedditShareButton url={windowURL}>
+        <RedditShareButton url={window.location.href} round={true}>
           <RedditIcon />
         </RedditShareButton>
       </div>
