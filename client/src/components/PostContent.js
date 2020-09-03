@@ -73,18 +73,18 @@ export default function PostContent() {
       <p>{data.post.body}</p>
       <LoremIpsum p={3} />
       <h5>- {data.post.user.username} -</h5>
-      <div class="badge badge-light">Click the icon to share this post</div>
+      <div className="badge badge-light">Click the icon to share this post</div>
       <div>
-        <FacebookShareButton url={window.location.href} round={true}>
+        <FacebookShareButton url="https://mighty-shore-23464.herokuapp.com/post/1">
           <FacebookIcon />
         </FacebookShareButton>
-        <LinkedinShareButton url={window.location.href} round={true}>
+        <LinkedinShareButton url={window.location.href}>
           <LinkedinIcon />
         </LinkedinShareButton>
-        <TwitterShareButton url={window.location.href} round={true}>
+        <TwitterShareButton url={window.location.href}>
           <TwitterIcon />
         </TwitterShareButton>
-        <RedditShareButton url={window.location.href} round={true}>
+        <RedditShareButton url={window.location.href}>
           <RedditIcon />
         </RedditShareButton>
       </div>
