@@ -76,16 +76,16 @@ export default function PostContent() {
       <h5>- {data.post.user.username} -</h5>
       <div class="badge badge-light">Click the icon to share this post</div>
       <div>
-        <FacebookShareButton url="http://localhost:3000/post/2">
+        <FacebookShareButton url={windowURL}>
           <FacebookIcon />
         </FacebookShareButton>
-        <LinkedinShareButton url="https://github.com/yelgon">
+        <LinkedinShareButton url={windowURL}>
           <LinkedinIcon />
         </LinkedinShareButton>
-        <TwitterShareButton url="https://github.com/yelgon">
+        <TwitterShareButton url={windowURL}>
           <TwitterIcon />
         </TwitterShareButton>
-        <RedditShareButton url="https://github.com/yelgon">
+        <RedditShareButton url={windowURL}>
           <RedditIcon />
         </RedditShareButton>
       </div>
