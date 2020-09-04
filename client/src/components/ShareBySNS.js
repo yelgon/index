@@ -15,23 +15,23 @@ export default function ShareBySNS(props) {
   return (
     <div>
       <FacebookShareButton
-        url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        url={"https://radiant-garden-98982.herokuapp.com/" + postId}
       >
         <FacebookIcon />
       </FacebookShareButton>
 
       <LinkedinShareButton
-        url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        url={"https://radiant-garden-98982.herokuapp.com/" + postId}
       >
         <LinkedinIcon />
       </LinkedinShareButton>
       <TwitterShareButton
-        url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        url={"https://radiant-garden-98982.herokuapp.com/" + postId}
       >
         <TwitterIcon />
       </TwitterShareButton>
       <RedditShareButton
-        url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        url={"https://radiant-garden-98982.herokuapp.com/" + postId}
       >
         <RedditIcon />
       </RedditShareButton>
