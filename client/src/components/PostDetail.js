@@ -25,10 +25,9 @@ const TextWrapper = styled.div`
   }
 `;
 
-export default function PostContent() {
+export default function PostDetail() {
   const { postId } = useParams();
   const intPostId = parseInt(postId);
-
   const POST_QUERY = gql`
     {
       post(id: ${intPostId}) {

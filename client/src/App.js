@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Blog from "./components/Blog.js";
-import PostContent from "./components/PostContent";
+import PostDetail from "./components/PostDetail";
 import "./App.css";
 import logo from "./logo.png";
 
@@ -23,7 +23,7 @@ function App() {
             style={{ display: "block", height: "100px" }}
           />
           <Route exact path="/" component={Blog} />
-          <Route exact path="/post/:postId" component={PostContent} />
+          <Route exact path="/post/:postId" component={PostDetail} />
         </div>
       </Router>
     </ApolloProvider>
