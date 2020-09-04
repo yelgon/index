@@ -53,8 +53,6 @@ export default function PostContent() {
     console.log(error);
     return <h4>Error :</h4>;
   }
-  console.log(window.location.href);
-  console.log(typeof window.location.href);
 
   return (
     <TextWrapper>
@@ -75,16 +73,25 @@ export default function PostContent() {
       <h5>- {data.post.user.username} -</h5>
       <div className="badge badge-light">Click the icon to share this post</div>
       <div>
-        <FacebookShareButton url="https://mighty-shore-23464.herokuapp.com/post/1">
+        <FacebookShareButton
+          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        >
           <FacebookIcon />
         </FacebookShareButton>
-        <LinkedinShareButton url={window.location.href}>
+
+        <LinkedinShareButton
+          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        >
           <LinkedinIcon />
         </LinkedinShareButton>
-        <TwitterShareButton url={window.location.href}>
+        <TwitterShareButton
+          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        >
           <TwitterIcon />
         </TwitterShareButton>
-        <RedditShareButton url={window.location.href}>
+        <RedditShareButton
+          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
+        >
           <RedditIcon />
         </RedditShareButton>
       </div>
