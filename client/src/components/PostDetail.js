@@ -4,16 +4,8 @@ import { useQuery, gql } from "@apollo/client";
 import { LoremIpsum } from "react-lorem-ipsum";
 import styled from "styled-components";
 import Comment from "./Comment";
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  TwitterShareButton,
-  RedditShareButton,
-  RedditIcon,
-  LinkedinIcon,
-  LinkedinShareButton,
-} from "react-share";
+import ShareBySNS from "./ShareBySNS";
+import AuthorProfile from "./AuthorProfile";
 
 const TextWrapper = styled.div`
   margin: 30px;
@@ -22,6 +14,15 @@ const TextWrapper = styled.div`
   }
   h5 {
     text-align: right;
+  }
+`;
+const AuthorPopup = styled.div`
+  opacity: 0;
+`;
+const Author = styled.div`
+  cursor: pointer;
+  &:hover > ${AuthorPopup} {
+    opacity: 1;
   }
 `;
 
@@ -66,34 +67,25 @@ export default function PostDetail() {
       >
         Home
       </Link>
-      <h4 style={{ marginBottom: "50px" }}>{data.post.title}</h4>
-      <p>{data.post.body}</p>
-      <LoremIpsum p={3} />
-      <h5>- {data.post.user.username} -</h5>
-      <div className="badge badge-light">Click the icon to share this post</div>
-      <div>
-        <FacebookShareButton
-          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
-        >
-          <FacebookIcon />
-        </FacebookShareButton>
+      <div
+        style={{
+          position: "relative",
+          zIndex: "100",
+        }}
+      >
+        <h4 style={{ marginBottom: "50px" }}>{data.post.title}</h4>
 
-        <LinkedinShareButton
-          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
-        >
-          <LinkedinIcon />
-        </LinkedinShareButton>
-        <TwitterShareButton
-          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
-        >
-          <TwitterIcon />
-        </TwitterShareButton>
-        <RedditShareButton
-          url={"https://mighty-shore-23464.herokuapp.com/post/" + postId}
-        >
-          <RedditIcon />
-        </RedditShareButton>
+        <p>{data.post.body}</p>
+        <LoremIpsum p={3} />
+        <Author>
+          <AuthorPopup>
+            <AuthorProfile user={data.post.user} />
+          </AuthorPopup>
+          <h5>- {data.post.user.username} -</h5>
+        </Author>
       </div>
+      <div className="badge badge-light">Click the icon to share this post</div>
+      <ShareBySNS postId={postId} />
       <h4
         style={{
           borderBottom: "2px solid green",
@@ -103,7 +95,6 @@ export default function PostDetail() {
       >
         Comments
       </h4>
-
       <Comment postId={intPostId} />
     </TextWrapper>
   );

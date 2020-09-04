@@ -2,23 +2,14 @@
 
 ## React - Hooks & GraphQL
 
+To test locally
+
 ## npm run dev
 
-or
+or visit
 
 ## https://mighty-shore-23464.herokuapp.com/
 
-Theme change option
+To see vitual DOM
 
-cerulean, cosmo, cyborg, darkly, flatly, journal and so on
-
-## https://bootswatch.com/
-
-index.html in public folder
-
-    <link
-      rel="stylesheet"
-      href="https://bootswatch.com/4/darkly/bootstrap.min.css"
-    />
-
-Currently darkly = > cerulean, cosmo,...
+## https://docs.google.com/presentation/d/1YNFsRbSAj417he8SDN4AOi56gubuC03RJEY1LptGwmI/edit?usp=sharing
