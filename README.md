@@ -1,10 +1,6 @@
 # Index Web Marketing - Coding Challenge
 
-React - Hooks & GraphQL
-
-## https://mighty-shore-23464.herokuapp.com/
-
-To test
+# React - Hooks & GraphQL
 
 ## npm run dev
 
