@@ -24,7 +24,6 @@ export default function PostDetail() {
   const handleClick = () => {
     setShowing(!showing);
   };
-  console.log(showing);
   const { postId } = useParams();
   const intPostId = parseInt(postId);
   const POST_QUERY = gql`
