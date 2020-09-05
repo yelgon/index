@@ -7,9 +7,8 @@ export default function AuthorProfile({ user: { email, phone, website } }) {
       style={{
         right: "0",
         position: "absolute",
-        bottom: "30px",
+        bottom: "60px",
         padding: "20px 10px 20px 10px",
-        zIndex: "1000",
       }}
     >
       <div

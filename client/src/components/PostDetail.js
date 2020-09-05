@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
-import { LoremIpsum } from "react-lorem-ipsum";
 import styled from "styled-components";
 import Comment from "./Comment";
 import ShareBySNS from "./ShareBySNS";
@@ -12,21 +11,20 @@ const TextWrapper = styled.div`
   p {
     font-size: 20px;
   }
-  h5 {
-    text-align: right;
-  }
 `;
-const AuthorPopup = styled.div`
-  opacity: 0;
-`;
-const Author = styled.div`
-  cursor: pointer;
-  &:hover > ${AuthorPopup} {
-    opacity: 1;
+const AuthorName = styled.div`
+  :hover {
+    cursor: pointer;
   }
+  text-align: right;
 `;
 
 export default function PostDetail() {
+  const [showing, setShowing] = useState(false);
+  const handleClick = () => {
+    setShowing(!showing);
+  };
+  console.log(showing);
   const { postId } = useParams();
   const intPostId = parseInt(postId);
   const POST_QUERY = gql`
@@ -67,22 +65,18 @@ export default function PostDetail() {
       >
         Home
       </Link>
-      <div
-        style={{
-          position: "relative",
-          zIndex: "100",
-        }}
-      >
-        <h4 style={{ marginBottom: "50px" }}>{data.post.title}</h4>
 
-        <p>{data.post.body}</p>
-        <LoremIpsum p={3} />
-        <Author>
-          <AuthorPopup>
-            <AuthorProfile user={data.post.user} />
-          </AuthorPopup>
+      <h4 style={{ marginBottom: "50px" }}>{data.post.title}</h4>
+
+      <p>{data.post.body}</p>
+      <div style={{ position: "relative" }}>
+        {showing && <AuthorProfile user={data.post.user} />}
+        <AuthorName onClick={handleClick}>
           <h5>- {data.post.user.username} -</h5>
-        </Author>
+          <div style={{ textAlign: "right" }} className="badge badge-danger">
+            Click to see author profile
+          </div>
+        </AuthorName>
       </div>
       <div className="badge badge-light">Click the icon to share this post</div>
       <ShareBySNS postId={postId} />
